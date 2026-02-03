@@ -4,9 +4,10 @@ This repo holds all necessary code to reproduce the analysis of the CTCs paper.
 This is the template we will serve until the final submission.
 
 ```
-.
 ├── code
 │   ├── Fig1
+│   ├── Fig1c.py
+│   ├── Fig1d.py
 │   ├── Fig2
 │   │   └── analysis
 │   │       ├── ambient_RNA.py
@@ -16,7 +17,8 @@ This is the template we will serve until the final submission.
 │   │       └── trajectories.py
 │   ├── Fig3
 │   ├── Fig4
-│   └── Fig5
+│   ├── Fig5
+│   └── Supplementary
 ├── data
 ├── envs
 ├── figures
@@ -32,10 +34,10 @@ This is the template we will serve until the final submission.
 └── results
 ```
 
-`data`, `results`, and `figures` are not synchronized with the repo (they are in the `.gitignore` file), but should be the same we are sharing on Google Drive. The `code` is divided per Figure. If a final figure requires complex analysis and visualizations, the necessary code is further splitted into analysis scripts and panels (e.g. `Fig1a.py` script reproduce Fig1a panel). 
-
-To ensure no pain at revision, each figure panel visualization script needs to be fully independent from the others, and must read and write from the shared `data` and `results` folders only. 
+`data`, `results`, and `figures` are not synchronized with the repo (they are in the `.gitignore` file), but should **always** be the same that we are sharing on Google Drive. 
+The `code` folder is divided per Figure. If a figure requires complex analyses and visualizations, the necessary code would be further splitted into multiple scripts and panels (e.g. `Fig1c.py` script reproduce Fig1c panel). 
+To ensure no pain at revision, each of these script needs to be fully independent from the others, and must read and write from the shared `data` and `results` folders only. 
 To avoid pain now, each **small** analysis task should require a separate branch, to be merged with master and removed at completion.
-The exception to this would be major updates in the whole folder structures, that needs to be committed *directly* on the master branch. 
+The exception to this would be major updates in the whole folder structures, that may be committed *directly* on the master branch. 
 
 
