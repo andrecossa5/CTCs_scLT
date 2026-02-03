@@ -4,6 +4,7 @@ This repo holds all necessary code to reproduce the analysis of the CTCs paper.
 This is the template we will serve until the final submission.
 
 ```
+.
 ├── code
 │   ├── Fig1
 │   ├── Fig1c.py
@@ -20,6 +21,69 @@ This is the template we will serve until the final submission.
 │   ├── Fig5
 │   └── Supplementary
 ├── data
+│   ├── clustered.h5ad
+│   ├── ctc_regulon.csv
+│   └── STARSolo
+│       ├── CTC_1_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── CTC_2_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── CTC_3_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── CTC_4_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── lung_1_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── lung_2_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── lung_3_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── lung_4_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── PT_1_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── PT_2_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       ├── PT_3_late
+│       │   └── filtered
+│       │       ├── barcodes.tsv.gz
+│       │       ├── features.tsv.gz
+│       │       └── matrix.mtx.gz
+│       └── PT_4_late
+│           └── filtered
+│               ├── barcodes.tsv.gz
+│               ├── features.tsv.gz
+│               └── matrix.mtx.gz
 ├── envs
 ├── figures
 │   ├── ~$Fig_schemes.pptx
