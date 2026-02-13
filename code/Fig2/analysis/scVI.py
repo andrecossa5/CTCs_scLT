@@ -2,6 +2,7 @@
 Batch-correction with scVI
 """
 
+import sys
 import os
 import scvi
 import scanpy as sc
