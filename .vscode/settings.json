@@ -1,0 +1,7 @@
+{
+    "python.REPL.enableREPLSmartSend": true,
+    "python.terminal.focusAfterLaunch": false,
+    "python.terminal.executeInFileDir": true,
+    "python.REPL.sendToNativeREPL": false,
+    "python.terminal.activateEnvironment": true
+}
