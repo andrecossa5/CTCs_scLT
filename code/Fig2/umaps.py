@@ -20,6 +20,7 @@ path_data = os.path.join(path_main, 'data')
 
 # Read adata
 adata = sc.read(os.path.join(path_data, 'adata.h5ad'))
+adata
 
 # Colors
 timepoint_colors = plu.create_palette(adata.obs, 'timepoint', plu.darjeeling)
@@ -49,15 +50,14 @@ sc.pl.umap(adata, color='GBC', ax=ax[4],
 fig.tight_layout()
 plt.show()
 
-adata.obs.groupby('sample')['n_UMIs'].describe()
-
 # Viz
 fig, ax = plt.subplots(figsize=(3,3))
-sc.pl.umap(adata, color='mouse', ax=ax,
-           show=False, frameon=False, legend_loc=None, size=1, title='')
-plu.add_legend(ax=ax, colors=mouse_colors,
-               label='Mouse', loc='upper left', bbox_to_anchor=(0,1))
-
-
+sc.pl.umap(adata, color='timepoint', ax=ax,
+           show=False, frameon=False, legend_loc=None, size=2.5, title='')
+plu.add_legend(ax=ax, colors=timepoint_colors,
+               label='Timepoint', loc='upper left', bbox_to_anchor=(0,1))
 fig.tight_layout()
 plt.show()
+
+
+##

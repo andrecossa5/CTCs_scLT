@@ -59,16 +59,20 @@ adata.var['highly_variable'].sum()
 
 # Reduce dimensions
 
-
-# Load scVI batch-corrected latent representation
-# ...
-
+# PCA based workflow: before scVI
 # sc.tl.pca(adata, n_comps=100)
 # sc.pl.pca_variance_ratio(adata, n_pcs=100)
-sc.pp.neighbors(adata, n_neighbors=15, n_pcs=25, metric='cosine')
+
+# Batch correction: load scVI latent representation
+X_scVI = pd.read_csv(os.path.join(path_data, 'X_scVI.csv'), index_col=0)
+assert all(X_scVI.index == adata.obs_names)
+adata.obsm['X_scVI'] = X_scVI.values
+
+# Neighborhood graph and dimensionality reduction
+sc.pp.neighbors(adata, n_neighbors=15, use_rep='X_scVI', metric='cosine')
 sc.tl.diffmap(adata, n_comps=10)
-sc.pp.neighbors(adata, n_neighbors=20, use_rep='X_diffmap', metric='cosine')
-random.seed(0)  # Set seed for PAGA reproducibility
+sc.pp.neighbors(adata, n_neighbors=30, use_rep='X_diffmap', metric='cosine')
+random.seed(1234)  # Set seed for PAGA reproducibility
 sc.tl.paga(adata, groups='timepoint')
 sc.pl.paga(adata)
 sc.tl.umap(adata, init_pos='paga')
@@ -85,7 +89,7 @@ sc.tl.umap(adata, init_pos='paga')
 # fig, axs =  plt.subplots(1,4, figsize=(8.5,2))
 # sc.pl.umap(adata, color='n_UMIs', ax=axs[0], show=False)
 # sc.pl.umap(adata, color='n_genes', ax=axs[1], show=False)
-# sc.pl.umap(adata, color='percent_mt', ax=axs[2], show=False)
+# sc.pl.umap(adata, color='mouse', ax=axs[2], show=False)
 # sc.pl.umap(adata, color='timepoint', ax=axs[3], show=False)
 # fig.tight_layout()
 # plt.show()
