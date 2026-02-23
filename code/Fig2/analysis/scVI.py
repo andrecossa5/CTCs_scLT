@@ -1,5 +1,5 @@
 ﻿"""
-Batch-correction with scVI
+Batch-correction with scVI.
 """
 
 import sys
