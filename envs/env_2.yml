@@ -1,0 +1,28 @@
+name: mito
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - compilers
+  - make
+  - cmake
+  - openblas
+  - conda-build
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scanpy=1.11
+  - python-igraph
+  - leidenalg
+  - gseapy
+  - statsmodels
+  - scikit-learn
+  - scvi-tools
+  - pip:
+      - cellrank
+      - moscot
+      - plotting_utils

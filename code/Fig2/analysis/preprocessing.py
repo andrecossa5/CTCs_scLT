@@ -107,9 +107,9 @@ sc.tl.umap(adata, init_pos='paga')
 
 
 # Save preprocessed adata
-# import anndata
-# anndata.settings.allow_write_nullable_strings = True
-# adata.write(os.path.join(path_data, 'adata.h5ad'))
+# import anndata
+# anndata.settings.allow_write_nullable_strings = True
+# adata.write(os.path.join(path_data, 'adata.h5ad'))
 
 
 ##
