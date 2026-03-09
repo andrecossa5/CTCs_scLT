@@ -1,0 +1,14 @@
+name: cospar
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - compilers
+  - make
+  - cmake
+  - openblas
+  - conda-build
+  - pip
+  - pip:
+      - git+https://github.com/ShouWenWang-Lab/cospar.git

@@ -1,4 +1,4 @@
-name: mito
+name: CTCs
 channels:
   - conda-forge
   - bioconda
@@ -10,19 +10,11 @@ dependencies:
   - openblas
   - conda-build
   - pip
-  - numpy
-  - scipy
-  - pandas
-  - matplotlib
-  - seaborn
+  - anndata=0.12.6
   - scanpy=1.11
-  - python-igraph
-  - leidenalg
   - gseapy
   - statsmodels
   - scikit-learn
-  - scvi-tools
   - pip:
       - cellrank
-      - moscot
       - plotting_utils
