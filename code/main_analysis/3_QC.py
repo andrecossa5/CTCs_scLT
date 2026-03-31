@@ -3,6 +3,7 @@ QC single-cell dataset.
 """
 
 import os
+import sys
 import pandas as pd
 import scanpy as sc
 import pyranges as pr
@@ -15,64 +16,9 @@ plu.set_rcParams()
 ##
 
 
-# Utils
-def filter_genes(adata, gtf):
-    """
-    Filter non-coding genes and pseudogenes, and add meta information.
-    """
-    genes = (
-        gtf.df
-        .query("Feature=='gene' and gene_type=='protein_coding'")
-        [["gene_id", "gene_name", "gene_type"]]
-        .drop_duplicates()
-        .reset_index(drop=True)
-    )
-
-    # Annotate and filter genes
-    genes['gene_id'] = genes['gene_id'].map(lambda x: x.split('.')[0])
-    adata = adata[:, adata.var['gene_ids'].isin(genes['gene_id'])].copy()
-    test = (
-        (adata.var_names.str.startswith('LC0')) | \
-        (adata.var_names.str.startswith('LC1')) | \
-        (adata.var_names.str.startswith('AC0')) | \
-        (adata.var_names.str.startswith('AC1')) | \
-        (adata.var_names.str.startswith('RPS')) | \
-        (adata.var_names.str.startswith('RPL'))
-    )
-    adata = adata[:,~test].copy()
-
-    return adata
-
-
-##
-
-
-def filter_cells(adata, thr=.001,
-                 min_umis=1000, max_umis=50000,
-                 min_genes=1000, max_genes=10000,
-                 max_percent_mt=0.15):
-    """
-    Filter cells based on QC metrics.
-    """
-    adata_ = adata.copy()
-    test = (
-        (adata_.obs['n_UMIs'] >= min_umis) &
-        (adata_.obs['n_UMIs'] <= max_umis) &
-        (adata_.obs['n_genes'] >= min_genes) &
-        (adata_.obs['n_genes'] <= max_genes) &
-        (adata_.obs['percent_mt'] <= max_percent_mt)
-    )
-    adata_ = adata_[test, :].copy()
-
-    # Refilter genes, at least expressed in <thr>% of cells
-    cell_threshold = thr * adata_.n_obs
-    test = (adata_.X > 0).sum(axis=0).A1 >= cell_threshold
-    adata_ = adata_[:, test].copy()
-
-    return adata_
-
-
-##
+# Source utils: insert your <code/main_analysis> path here
+sys.path.insert(0, '/Users/cossa/Desktop/projects/CTCs_scLT/code/main_analysis')
+from utils import *
 
 
 # Paths
@@ -168,17 +114,17 @@ adata = filter_cells(
     max_percent_mt=0.25,
     thr=.0005
 )
-adata
-adata.obs['sample'].value_counts()
-adata.obs['mouse'].value_counts()
-adata.obs['timepoint'].value_counts()
-adata.obs[qc_metrics+['timepoint']].groupby('timepoint').describe().T
-adata.obs[qc_metrics+['sample']].groupby('sample').median()
+# adata
+# adata.obs['sample'].value_counts()
+# adata.obs['mouse'].value_counts()
+# adata.obs['timepoint'].value_counts()
+# adata.obs[qc_metrics+['timepoint']].groupby('timepoint').describe().T
+# adata.obs[qc_metrics+['sample']].groupby('sample').median()
 
 # Save QC adata
-import anndata
-anndata.settings.allow_write_nullable_strings = True
-adata.write(os.path.join(path_data, 'adata.h5ad'))
+# import anndata
+# anndata.settings.allow_write_nullable_strings = True
+# adata.write(os.path.join(path_data, 'adata.h5ad'))
 
 
 ##

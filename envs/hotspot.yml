@@ -1,4 +1,4 @@
-name: CTCs
+name: hotspot
 channels:
   - conda-forge
   - bioconda
@@ -12,13 +12,7 @@ dependencies:
   - pip
   - anndata=0.12.6
   - scanpy=1.11
-  - python-igraph
-  - leidenalg
-  - gseapy
-  - statsmodels
-  - scikit-learn
+  - numpy=1.26.4
+  - pandas=2.1.4
   - pip:
-      - plotting_utils
-      - pyranges
-      - openpyxl
-      - fa2-modified
+      - hotspotsc==1.1.3

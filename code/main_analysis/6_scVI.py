@@ -17,7 +17,7 @@ adata = sc.read(os.path.join(path_data, 'adata.h5ad'))
 adata
 
 # Subset HVGs
-adata = adata[:, adata.var['highly_variable']].copy()
+adata = adata[:,adata.var['highly_variable']].copy()
 scvi.model.SCVI.setup_anndata(
     adata,
     layer="raw",

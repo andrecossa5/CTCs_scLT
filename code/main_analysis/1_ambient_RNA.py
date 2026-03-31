@@ -41,15 +41,18 @@ for sample in os.listdir(path_data):
         ), dpi=1000
     )
 
-   # path_input = os.path.join(path_h5ad, f'{sample}_raw.h5ad')
-   # path_output = os.path.join(path_data, sample, 'cellbender.h5')
-   # os.system(
-   #     f"cellbender remove-background --input {path_input} --output {path_output} --expected-cells 5000 --epochs 100"
-   # )
+    # Local version
+    path_input = os.path.join(path_h5ad, f'{sample}_raw.h5ad')
+    path_output = os.path.join(path_data, sample, 'cellbender.h5')
+    os.system(
+        f"cellbender remove-background --input {path_input} --output {path_output} --expected-cells 5000 --epochs 100"
+    )
 
 
 ##
 
+
+# SLURM wrapper
 
 # #!/bin/bash
 # #SBATCH --time=3:00:00
