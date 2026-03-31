@@ -1,0 +1,24 @@
+name: CTCs
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - compilers
+  - make
+  - cmake
+  - openblas
+  - conda-build
+  - pip
+  - anndata=0.12.6
+  - scanpy=1.11
+  - python-igraph
+  - leidenalg
+  - gseapy
+  - statsmodels
+  - scikit-learn
+  - pip:
+      - plotting_utils
+      - pyranges
+      - openpyxl
+      - fa2-modified
