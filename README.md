@@ -7,32 +7,39 @@ This is the template we will serve until the final submission.
 .
 ├── code
 │   ├── Fig1
-│   │   ├── clone_calling.py
 │   │   ├── Fig1c.py
-│   │   ├── Fig1d.py
-│   │   ├── QC.py
-│   │   └── viz_clones.py
+│   │   └── Fig1d.py
 │   ├── Fig2
-│   │   ├── analysis
-│   │   │   ├── __pycache__
-│   │   │   │   ├── clone_calling.cpython-311.pyc
-│   │   │   │   └── QC.cpython-312.pyc
-│   │   │   ├── ambient_RNA.py
-│   │   │   ├── cell_states.py
-│   │   │   ├── gene_list.py
-│   │   │   ├── GRN_inference.py
-│   │   │   ├── preprocessing.py
-│   │   │   ├── scVI.py
-│   │   │   └── trajectories.py
-│   │   └── umaps.py
-│   ├── Fig3
-│   ├── Fig4
-│   ├── Fig5
-│   └── Supplementary
+│   │   ├── Fig2ae.py
+│   │   ├── FIg2f.py
+│   │   ├── Fig2gh.py
+│   │   ├── Fig2i.py
+│   │   ├── Fig2l.py
+│   │   ├── Fig2m.py
+│   │   └── Fig2n.py
+│   └── main_analysis
+│       ├── __pycache__
+│       │   └── utils.cpython-311.pyc
+│       ├── 1_ambient_RNA.py
+│       ├── 10_clones_annotation.py
+│       ├── 2_clone_calling.py
+│       ├── 3_QC.py
+│       ├── 4_gene_list.py
+│       ├── 5_preprocessing_I.py
+│       ├── 6_scVI.py
+│       ├── 7_preprocessing_II.py
+│       ├── 8_Hotspot.py
+│       ├── 9_cell_state_annotation.py
+│       └── utils.py
 ├── data
 │   ├── adata.h5ad
 │   ├── CBC_GBC_assignment.csv
 │   ├── CBC_GBC_combos_merged.tsv.gz
+│   ├── cell_state_markers_filtered.csv
+│   ├── cell_state_markers_full.csv
+│   ├── cells_meta.csv
+│   ├── colors.pkl
+│   ├── connectivities.npz
 │   ├── curated_genes.txt
 │   ├── gencode.v45.annotation.gtf
 │   ├── gene_lists
@@ -49,157 +56,176 @@ This is the template we will serve until the final submission.
 │   │       ├── CTCs_10_gene_list_mel.txt
 │   │       ├── CTCs_15_gene_list_hcc.txt
 │   │       └── Peer.txt
-│   ├── old
-│   │   ├── clustered.h5ad
-│   │   └── ctc_regulon.csv
-│   └── STARSolo
-│       ├── CTC_1_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── CTC_2_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── CTC_3_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── CTC_4_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── lung_1_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── lung_2_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── lung_3_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── lung_4_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── PT_1_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── PT_2_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       ├── PT_3_late
-│       │   ├── cb_filtered.h5
-│       │   ├── Elbow_10x.pdf
-│       │   ├── filtered
-│       │   │   ├── barcodes.tsv.gz
-│       │   │   ├── features.tsv.gz
-│       │   │   └── matrix.mtx.gz
-│       │   └── raw
-│       │       ├── barcodes.tsv.gz
-│       │       ├── features.tsv.gz
-│       │       └── matrix.mtx.gz
-│       └── PT_4_late
-│           ├── cb_filtered.h5
-│           ├── Elbow_10x.pdf
-│           ├── filtered
-│           │   ├── barcodes.tsv.gz
-│           │   ├── features.tsv.gz
-│           │   └── matrix.mtx.gz
-│           └── raw
-│               ├── barcodes.tsv.gz
-│               ├── features.tsv.gz
-│               └── matrix.mtx.gz
+│   ├── hotspot_local_correlation_z.csv
+│   ├── hotspot_modules.csv
+│   ├── hotspot.pkl
+│   ├── modules_labels.csv
+│   ├── modules_labels.numbers
+│   ├── STARSolo
+│   │   ├── CTC_1_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── CTC_2_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── CTC_3_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── CTC_4_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── lung_1_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── lung_2_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── lung_3_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── lung_4_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── PT_1_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── PT_2_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   ├── PT_3_late
+│   │   │   ├── cb_filtered.h5
+│   │   │   ├── Elbow_10x.pdf
+│   │   │   ├── filtered
+│   │   │   │   ├── barcodes.tsv.gz
+│   │   │   │   ├── features.tsv.gz
+│   │   │   │   └── matrix.mtx.gz
+│   │   │   └── raw
+│   │   │       ├── barcodes.tsv.gz
+│   │   │       ├── features.tsv.gz
+│   │   │       └── matrix.mtx.gz
+│   │   └── PT_4_late
+│   │       ├── cb_filtered.h5
+│   │       ├── Elbow_10x.pdf
+│   │       ├── filtered
+│   │       │   ├── barcodes.tsv.gz
+│   │       │   ├── features.tsv.gz
+│   │       │   └── matrix.mtx.gz
+│   │       └── raw
+│   │           ├── barcodes.tsv.gz
+│   │           ├── features.tsv.gz
+│   │           └── matrix.mtx.gz
+│   └── X_scVI.csv
 ├── envs
-│   └── env_1.yml
+│   ├── cospar.yml
+│   ├── ctcs.yml
+│   └── hotspot.yml
 ├── figures
+│   ├── ~$Fig2_andre.pptx
 │   ├── Fig_schemes.pptx
 │   ├── Fig.1_clones.pdf
-│   ├── Fig.2_transcription.pdf
 │   ├── fig.3_metabolomics.pdf
 │   ├── fig.4_seahorse.pdf
-│   └── fig.5_ATO.pdf
+│   ├── fig.5_ATO.pdf
+│   ├── Fig2
+│   │   ├── CGCGTCACACTGTCGGGC_Fig2i_clone_trajectories.pdf
+│   │   ├── CTGCGGTTTCGTTAACGC_Fig2i_clone_trajectories.pdf
+│   │   ├── Fig2ac.pdf
+│   │   ├── Fig2d.pdf
+│   │   ├── Fig2e.pdf
+│   │   ├── Fig2f.pdf
+│   │   ├── Fig2g.pdf
+│   │   ├── Fig2h.pdf
+│   │   ├── Fig2i.pdf
+│   │   ├── Fig2m.pdf
+│   │   └── Fig2n.pdf
+│   ├── Fig2_andre.pdf
+│   ├── Fig2_andre.pptx
+│   └── Fig2.zip
 ├── LICENSE
-├── README.md
-└── results
+└── README.md
 ```
 
-`data`, `results`, and `figures` are not synchronized with the repo (they are in the `.gitignore` file), but should **always** be the same that we are sharing on Google Drive.
+`data`, and `figures` are not synchronized with the repo (they are in the `.gitignore` file), but should **always** be the same that we are sharing on Google Drive.
 The `code` folder is divided per Figure. If a figure requires complex analyses and visualizations, the necessary code would be further splitted into multiple scripts and panels (e.g. `Fig1c.py` script reproduce Fig1c panel).
 To ensure no pain at revision, each of these script needs to be fully independent from the others, and must read and write from the shared `data` and `results` folders only.
 To avoid pain now, each **small** analysis task should require a separate branch, to be merged with master and removed at completion.
